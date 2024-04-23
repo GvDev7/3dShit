@@ -15,6 +15,10 @@ const Shirt = () => {
 
     const stateString = JSON.stringify(snap);
 
+    useFrame((state, delta) => {
+        easing.dampC(materials.lambert1.color, snap.color, 0.25, delta)
+    })
+
     return (
         <group key={stateString}>
             <mesh 
@@ -23,7 +27,6 @@ const Shirt = () => {
                 material={materials.lambert1} 
                 material-roughness={1} 
                 dispose={null}
-                scale={4}
             >
             {snap.isFullTexture && (
                 <Decal 
@@ -35,7 +38,7 @@ const Shirt = () => {
             )}
             {snap.isLogoTexture && (
                 <Decal 
-                    position={[0,0.05,0.15]}
+                    position={[0,0.04,0.18]}
                     rotation={[0,0,0]}
                     scale={0.15}
                     map={logoTexture}
